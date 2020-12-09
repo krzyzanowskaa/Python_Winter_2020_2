@@ -1,5 +1,5 @@
 class Shape:
-    def __init__(self, a=10, b=6, c=7):
+    def __init__(self, a=10, b=6, c=7) -> object:
         self.set_params(a, b, c)
 
     def set_params(self, a, b, c):
@@ -55,20 +55,14 @@ class EquilateralTriangle(Shape):
     def __repr__(self):
         return self.__class__.__name__ + "[" + str(self.a) + " by " + str(self.a) + " by " + str(self.a) + "] at " + str(hex(id(self)))
 
-class Square(Rectangle):
-    def calc_surface(self):
-        return r.a * r.a
-
-
-
-
 r = Rectangle(5, 6)
 print(r)
 #r._a = 600
 print(r.calc_surface())
+r.swap_sides()
+print(r)
 
-
-c = Circle(3)
+c = Circle(7)
 print(c)
 print(c.calc_surface())
 
@@ -76,17 +70,20 @@ t = Triangle(10, 6, 7)
 print(t)
 print(t.calc_surface())
 
-e = EquilateralTriangle(5)
-print(e)
-print(e.calc_surface)
+w = EquilateralTriangle(5)
+print(w)
+print(w.calc_surface)
 
+
+
+class Square(Rectangle):
+    def calc_surface(self):
+        return r.a * r.a
 sq = Square(r)
 print(sq)
 print(sq.calc_surface())
 
 
-r2 = r.calc_surface() + sq.calc_surface()
-print("Pole prostokąta r2 to: " + str(r2))
 
-wf = r.calc_surface() + sq.calc_surface() + t.calc_surface() + e.calc_surface - c.calc_surface()
-print("Pole wszystkich figur minus koła to : " + str(wf))
+
+
