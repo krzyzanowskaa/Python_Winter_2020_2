@@ -48,7 +48,7 @@ class Account:
 
 
     def get_balance(self):
-        print("The balance is: " + self._balance)
+        print("The balance is: " + str(self._balance))
         return self._balance
 
     def __repr__(self):
@@ -70,9 +70,11 @@ class Bank:
         self.accounts.append(a)
         return a
 
-    def transfer(self, acc_id_from, acc_id_to, amount):
-        # TODO - implement it (input parameters are account ids)
+    def transfer(self, acc_id_from, acc_id_to,  amount):
+
+    # TODO - implement it (input parameters are account ids)
         pass
+
 
     def __repr__(self):
         return 'Bank(cust: {0}, acc: {1})'.format(self.customers, self.accounts)
@@ -87,4 +89,6 @@ print(a1)
 a1.deposit(300)
 a1.charge(1234, 100)
 a1.calc_interest(0.08, 12)
+
 print(bank)
+
