@@ -21,21 +21,31 @@ class Account:
         self.account_id = Account.last_id
 
     def deposit(self, amount):
-        #TODO - add validation to prevent misuse
-        self._balance += amount
-        print("Deposited: " + str(amount) + ". The new balance is: " + str(self._balance))
+        if amount <= 1000:
+            self._balance += amount
+            print("Deposited: " + str(amount) + ". The new balance is: " + str(self._balance))
+        else: print("Max deposit amount is 1 000.")
 
-    def charge(self, amount):
-        #TODO - add validation to prevent misuse
-        if self._balance >= amount:
-            self._balance -= amount
-            print("Charged: " + str(amount) + ". The new balance is: " + str(self._balance))
-        else:
-            print("Sorry, you do not have that much money on your account to withdraw: " + amount)
+    def charge(self, pincode, amount):
+        if pincode == 1234:
+            if self._balance >= amount:
+                self._balance -= amount
+                print("Charged: " + str(amount) + ". The new balance is: " + str(self._balance))
+            else:
+                print("Sorry, you do not have that much money on your account to withdraw: " + amount)
+        else: print("Pin code incorrect, try again.")
 
-    def calc_interest(self):
+
+    def calc_interest(self, interest_rate, time):
         #TODO - add implementation based on self.interest_rate
-        pass
+        self.interest_rate = interest_rate
+        self.time = time
+        interest = (self._balance * self.interest_rate * self.time)/100
+        total_balance = self._balance + interest
+
+        print("The interest after " + str(time) + " month(s) is: " + str(interest) + ". Total account balance is: " + str(total_balance))
+        return interest
+
 
     def get_balance(self):
         print("The balance is: " + self._balance)
@@ -74,7 +84,7 @@ c1 = bank.create_customer("Jan", "Kowalski", "j.kowalski@gmail.com")
 print(c1)
 a1 = bank.create_account(c1)
 print(a1)
-a1.deposit(200)
-a1.charge(100)
-
+a1.deposit(300)
+a1.charge(1234, 100)
+a1.calc_interest(0.08, 12)
 print(bank)
